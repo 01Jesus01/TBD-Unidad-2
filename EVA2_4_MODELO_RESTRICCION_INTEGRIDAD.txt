@@ -1,0 +1,601 @@
+Microsoft Windows [Versión 10.0.19045.2673]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\Jesus Arellano>"C:\Program Files\MySQL\MySQL Shell 8.0\bin\mysqlsh.exe"
+MySQL Shell 8.0.32
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect
+\connect [--mx|--mysqlx|--mc|--mysql] [--ssh <sshuri>] <URI>
+ MySQL  SQL > \connect --mc usuario root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| agencia            |
+| eva_2              |
+| evaluacion_1       |
+| human_resources    |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.0102 sec)
+ MySQL  localhost:3306 ssl  SQL > use eva_2;
+Default schema set to `eva_2`.
+Fetching global names, object names from `eva_2` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  eva_2  SQL > show tables;
++-----------------+
+| Tables_in_eva_2 |
++-----------------+
+| contacts        |
+| detalle         |
+| detallefactura  |
+| factura         |
+| maestro         |
+| phones          |
++-----------------+
+6 rows in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table Customers ()
+                                      -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table Customers (id int auto_increment, last_name varchar(50), firstname varchar(50), companyname varchar(50), street1 varchar(30), street2 varchar(30), city varchar(40), state varchar(40), zipcode varchar(30), phone int, fax varchar(40), email varchar(30), S_id int);
+ERROR: 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table customers (id int auto_increment key, last_name varchar(50), firstname varchar(50), companyname varchar(50), street1 varchar(30), street2 varchar(30), city varchar(40), state varchar(40), zipcode varchar(30), phone int, fax varchar(40), email varchar(30), S_id int);
+Query OK, 0 rows affected (0.0333 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc customers;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| last_name   | varchar(50) | YES  |     | NULL    |                |
+| firstname   | varchar(50) | YES  |     | NULL    |                |
+| companyname | varchar(50) | YES  |     | NULL    |                |
+| street1     | varchar(30) | YES  |     | NULL    |                |
+| street2     | varchar(30) | YES  |     | NULL    |                |
+| city        | varchar(40) | YES  |     | NULL    |                |
+| state       | varchar(40) | YES  |     | NULL    |                |
+| zipcode     | varchar(30) | YES  |     | NULL    |                |
+| phone       | int         | YES  |     | NULL    |                |
+| fax         | varchar(40) | YES  |     | NULL    |                |
+| email       | varchar(30) | YES  |     | NULL    |                |
+| S_id        | int         | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+13 rows in set (0.0115 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table salesreps( id int auto_icrement key, lastname varchar(50), firstname varchar(50
+                                      -> ), commission double);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_icrement key, lastname varchar(50), firstname varchar(50
+), commission doub' at line 1
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table salesreps( id int auto_icrement key, lastname varchar(50), firstname varchar(50), commission double);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_icrement key, lastname varchar(50), firstname varchar(50), commission doubl' at line 1
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table salesreps( id int auto_increment key, lastname varchar(50), firstname varchar(50), commission double);
+Query OK, 0 rows affected (0.0180 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > drop table customers;
+Query OK, 0 rows affected (0.0223 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table customers (id int auto_increment key, lastname varchar(50), firstname varchar(50), companyname varchar(50), street1 varchar(30), street2 varchar(30), city varchar(40), state varchar(40), zipcode varchar(30), phone int, fax varchar(40), email varchar(30), S_id int);
+Query OK, 0 rows affected (0.0386 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc customers;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| lastname    | varchar(50) | YES  |     | NULL    |                |
+| firstname   | varchar(50) | YES  |     | NULL    |                |
+| companyname | varchar(50) | YES  |     | NULL    |                |
+| street1     | varchar(30) | YES  |     | NULL    |                |
+| street2     | varchar(30) | YES  |     | NULL    |                |
+| city        | varchar(40) | YES  |     | NULL    |                |
+| state       | varchar(40) | YES  |     | NULL    |                |
+| zipcode     | varchar(30) | YES  |     | NULL    |                |
+| phone       | int         | YES  |     | NULL    |                |
+| fax         | varchar(40) | YES  |     | NULL    |                |
+| email       | varchar(30) | YES  |     | NULL    |                |
+| S_id        | int         | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+13 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc salesreps;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int         | NO   | PRI | NULL    | auto_increment |
+| lastname   | varchar(50) | YES  |     | NULL    |                |
+| firstname  | varchar(50) | YES  |     | NULL    |                |
+| commission | double      | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0017 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table orders (id int auto_increment, c_id int, orderdate date , shipdate date, paiddate date, status varchar(50));
+ERROR: 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+
+
+
+
+
+Microsoft Windows [Versión 10.0.19045.2673]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\Jesus Arellano>"C:\Program Files\MySQL\MySQL Shell 8.0\bin\mysqlsh.exe"
+MySQL Shell 8.0.32
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect
+\connect [--mx|--mysqlx|--mc|--mysql] [--ssh <sshuri>] <URI>
+ MySQL  SQL > \connect --mc usuario root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.32 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| agencia            |
+| eva_2              |
+| evaluacion_1       |
+| human_resources    |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.0071 sec)
+ MySQL  localhost:3306 ssl  SQL > use eva_2;
+Default schema set to `eva_2`.
+Fetching global names, object names from `eva_2` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  eva_2  SQL > show tables;
++-----------------+
+| Tables_in_eva_2 |
++-----------------+
+| contacts        |
+| customers       |
+| detalle         |
+| detallefactura  |
+| factura         |
+| maestro         |
+| phones          |
+| salesreps       |
++-----------------+
+8 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table orders (id int auto_increment, c_id int, orderdate date , shipdate date, paiddate date, status varchar(50));
+ERROR: 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table orders (id int auto_increment key , c_id int, orderdate date , shipdate date, paiddate date, status varchar(50));
+Query OK, 0 rows affected (0.0571 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table items( O_ID int, ID int auto_increment key,  P_ID int, quantity int);
+Query OK, 0 rows affected (0.0203 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show tables;
++-----------------+
+| Tables_in_eva_2 |
++-----------------+
+| contacts        |
+| customers       |
+| detalle         |
+| detallefactura  |
+| factura         |
+| items           |
+| maestro         |
+| orders          |
+| phones          |
+| salesreps       |
++-----------------+
+10 rows in set (0.0065 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show table customers;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'customers' at line 1
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table customers;
++-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
++-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customers | CREATE TABLE `customers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lastname` varchar(50) DEFAULT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `companyname` varchar(50) DEFAULT NULL,
+  `street1` varchar(30) DEFAULT NULL,
+  `street2` varchar(30) DEFAULT NULL,
+  `city` varchar(40) DEFAULT NULL,
+  `state` varchar(40) DEFAULT NULL,
+  `zipcode` varchar(30) DEFAULT NULL,
+  `phone` int DEFAULT NULL,
+  `fax` varchar(40) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `S_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0178 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > drop table customers;
+Query OK, 0 rows affected (0.0264 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table customers (id int auto_increment key, lastname varchar(50), firstname varchar(50), companyname varchar(50), street1 varchar(30), street2 varchar(30), city varchar(40), state varchar(40), zipcode varchar(30), phone int, fax varchar(40), email varchar(30), S_id int);
+Query OK, 0 rows affected (0.0227 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table customers add foreign key(S_ID) references salesreps(id) on delete cascade on update cascade;
+Query OK, 0 rows affected (0.0921 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table customers;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customers | CREATE TABLE `customers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lastname` varchar(50) DEFAULT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `companyname` varchar(50) DEFAULT NULL,
+  `street1` varchar(30) DEFAULT NULL,
+  `street2` varchar(30) DEFAULT NULL,
+  `city` varchar(40) DEFAULT NULL,
+  `state` varchar(40) DEFAULT NULL,
+  `zipcode` varchar(30) DEFAULT NULL,
+  `phone` int DEFAULT NULL,
+  `fax` varchar(40) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `S_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `S_id` (`S_id`),
+  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`S_id`) REFERENCES `salesreps` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc salesreps;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int         | NO   | PRI | NULL    | auto_increment |
+| lastname   | varchar(50) | YES  |     | NULL    |                |
+| firstname  | varchar(50) | YES  |     | NULL    |                |
+| commission | double      | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0120 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc customers;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| lastname    | varchar(50) | YES  |     | NULL    |                |
+| firstname   | varchar(50) | YES  |     | NULL    |                |
+| companyname | varchar(50) | YES  |     | NULL    |                |
+| street1     | varchar(30) | YES  |     | NULL    |                |
+| street2     | varchar(30) | YES  |     | NULL    |                |
+| city        | varchar(40) | YES  |     | NULL    |                |
+| state       | varchar(40) | YES  |     | NULL    |                |
+| zipcode     | varchar(30) | YES  |     | NULL    |                |
+| phone       | int         | YES  |     | NULL    |                |
+| fax         | varchar(40) | YES  |     | NULL    |                |
+| email       | varchar(30) | YES  |     | NULL    |                |
+| S_id        | int         | YES  | MUL | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+13 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc orders;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| c_id      | int         | YES  |     | NULL    |                |
+| orderdate | date        | YES  |     | NULL    |                |
+| shipdate  | date        | YES  |     | NULL    |                |
+| paiddate  | date        | YES  |     | NULL    |                |
+| status    | varchar(50) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.0069 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table orders add foreign key(c_id) references customers(id) on delete not null on update cascade;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null on update cascade' at line 1
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table orders add foreign key(c_id) references customers(id) on delete set not null on update cascade;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null on update cascade' at line 1
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table orders add foreign key(c_id) references customers(id) on delete set null on update cascade;
+Query OK, 0 rows affected (0.0402 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc orders;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| c_id      | int         | YES  | MUL | NULL    |                |
+| orderdate | date        | YES  |     | NULL    |                |
+| shipdate  | date        | YES  |     | NULL    |                |
+| paiddate  | date        | YES  |     | NULL    |                |
+| status    | varchar(50) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc customers;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| lastname    | varchar(50) | YES  |     | NULL    |                |
+| firstname   | varchar(50) | YES  |     | NULL    |                |
+| companyname | varchar(50) | YES  |     | NULL    |                |
+| street1     | varchar(30) | YES  |     | NULL    |                |
+| street2     | varchar(30) | YES  |     | NULL    |                |
+| city        | varchar(40) | YES  |     | NULL    |                |
+| state       | varchar(40) | YES  |     | NULL    |                |
+| zipcode     | varchar(30) | YES  |     | NULL    |                |
+| phone       | int         | YES  |     | NULL    |                |
+| fax         | varchar(40) | YES  |     | NULL    |                |
+| email       | varchar(30) | YES  |     | NULL    |                |
+| S_id        | int         | YES  | MUL | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+13 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc items;
++----------+------+------+-----+---------+----------------+
+| Field    | Type | Null | Key | Default | Extra          |
++----------+------+------+-----+---------+----------------+
+| O_ID     | int  | YES  |     | NULL    |                |
+| ID       | int  | NO   | PRI | NULL    | auto_increment |
+| P_ID     | int  | YES  |     | NULL    |                |
+| quantity | int  | YES  |     | NULL    |                |
++----------+------+------+-----+---------+----------------+
+4 rows in set (0.0017 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table items add foreign key(O_ID) references orders(id) on delete cascade on update cascade;
+Query OK, 0 rows affected (0.0531 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc items;
++----------+------+------+-----+---------+----------------+
+| Field    | Type | Null | Key | Default | Extra          |
++----------+------+------+-----+---------+----------------+
+| O_ID     | int  | YES  | MUL | NULL    |                |
+| ID       | int  | NO   | PRI | NULL    | auto_increment |
+| P_ID     | int  | YES  |     | NULL    |                |
+| quantity | int  | YES  |     | NULL    |                |
++----------+------+------+-----+---------+----------------+
+4 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > create table parts(ID int auto_increment key, description varchar(255), unitprice int, onhand varchar(50), reorder varchar(50));
+Query OK, 0 rows affected (0.0151 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table items add foreign key(P_ID) references parts(id) on delete cascade on update cascade;
+Query OK, 0 rows affected (0.0627 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc items;
++----------+------+------+-----+---------+----------------+
+| Field    | Type | Null | Key | Default | Extra          |
++----------+------+------+-----+---------+----------------+
+| O_ID     | int  | YES  | MUL | NULL    |                |
+| ID       | int  | NO   | PRI | NULL    | auto_increment |
+| P_ID     | int  | YES  | MUL | NULL    |                |
+| quantity | int  | YES  |     | NULL    |                |
++----------+------+------+-----+---------+----------------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc items;
++----------+------+------+-----+---------+----------------+
+| Field    | Type | Null | Key | Default | Extra          |
++----------+------+------+-----+---------+----------------+
+| O_ID     | int  | YES  | MUL | NULL    |                |
+| ID       | int  | NO   | PRI | NULL    | auto_increment |
+| P_ID     | int  | YES  | MUL | NULL    |                |
+| quantity | int  | YES  |     | NULL    |                |
++----------+------+------+-----+---------+----------------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table customers;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customers | CREATE TABLE `customers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lastname` varchar(50) DEFAULT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `companyname` varchar(50) DEFAULT NULL,
+  `street1` varchar(30) DEFAULT NULL,
+  `street2` varchar(30) DEFAULT NULL,
+  `city` varchar(40) DEFAULT NULL,
+  `state` varchar(40) DEFAULT NULL,
+  `zipcode` varchar(30) DEFAULT NULL,
+  `phone` int DEFAULT NULL,
+  `fax` varchar(40) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `S_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `S_id` (`S_id`),
+  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`S_id`) REFERENCES `salesreps` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0096 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table orders;
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| orders | CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `c_id` int DEFAULT NULL,
+  `orderdate` date DEFAULT NULL,
+  `shipdate` date DEFAULT NULL,
+  `paiddate` date DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `c_id` (`c_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0094 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table parts;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                             |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| parts | CREATE TABLE `parts` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `unitprice` int DEFAULT NULL,
+  `onhand` varchar(50) DEFAULT NULL,
+  `reorder` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table items;
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| items | CREATE TABLE `items` (
+  `O_ID` int DEFAULT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `P_ID` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `O_ID` (`O_ID`),
+  KEY `P_ID` (`P_ID`),
+  CONSTRAINT `items_ibfk_1` FOREIGN KEY (`O_ID`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `items_ibfk_2` FOREIGN KEY (`P_ID`) REFERENCES `parts` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table salesreps;
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                              |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| salesreps | CREATE TABLE `salesreps` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lastname` varchar(50) DEFAULT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `commission` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0087 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > desc parts;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| ID          | int          | NO   | PRI | NULL    | auto_increment |
+| description | varchar(255) | YES  |     | NULL    |                |
+| unitprice   | int          | YES  |     | NULL    |                |
+| onhand      | varchar(50)  | YES  |     | NULL    |                |
+| reorder     | varchar(50)  | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table orders drop constraint orders_ibfk_1;
+Query OK, 0 rows affected (0.0237 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table orders add foreign key(c_id) references customers(id) on delete restrint on update cascade;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'restrint on update cascade' at line 1
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table orders add foreign key(c_id) references customers(id) on delete restrict on update cascade;
+Query OK, 0 rows affected (0.0655 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table orders drop constraint items_ibfk_1;
+ERROR: 3940 (HY000): Constraint 'items_ibfk_1' does not exist.
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table items drop constraint items_ibfk_1;
+Query OK, 0 rows affected (0.0178 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table items drop constraint items_ibfk_2;
+Query OK, 0 rows affected (0.0225 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table items add foreign key(O_ID) references orders(id) on delete restrict on update cascade;
+Query OK, 0 rows affected (0.0608 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > alter table items add foreign key(P_ID) references parts(id) on delete restrict on update cascade;
+Query OK, 0 rows affected (0.0624 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table customers;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customers | CREATE TABLE `customers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lastname` varchar(50) DEFAULT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `companyname` varchar(50) DEFAULT NULL,
+  `street1` varchar(30) DEFAULT NULL,
+  `street2` varchar(30) DEFAULT NULL,
+  `city` varchar(40) DEFAULT NULL,
+  `state` varchar(40) DEFAULT NULL,
+  `zipcode` varchar(30) DEFAULT NULL,
+  `phone` int DEFAULT NULL,
+  `fax` varchar(40) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `S_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `S_id` (`S_id`),
+  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`S_id`) REFERENCES `salesreps` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table orders;
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| orders | CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `c_id` int DEFAULT NULL,
+  `orderdate` date DEFAULT NULL,
+  `shipdate` date DEFAULT NULL,
+  `paiddate` date DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `c_id` (`c_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table parts;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                             |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| parts | CREATE TABLE `parts` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `unitprice` int DEFAULT NULL,
+  `onhand` varchar(50) DEFAULT NULL,
+  `reorder` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table items;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| items | CREATE TABLE `items` (
+  `O_ID` int DEFAULT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `P_ID` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `O_ID` (`O_ID`),
+  KEY `P_ID` (`P_ID`),
+  CONSTRAINT `items_ibfk_1` FOREIGN KEY (`O_ID`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `items_ibfk_2` FOREIGN KEY (`P_ID`) REFERENCES `parts` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:3306 ssl  eva_2  SQL > show create table salesreps;
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                              |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| salesreps | CREATE TABLE `salesreps` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lastname` varchar(50) DEFAULT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `commission` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0005 sec)
